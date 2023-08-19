@@ -33,12 +33,26 @@ QRCode.toString(pairInfo.execURL, {type: 'terminal'}, function (err, qrtext) {
 })
 
 console.log('Waiting for smartphone to connect...');
-await gate.waitConnected();
+
+try {
+    await gate.waitConnected();
+} catch (e) {
+    console.error('caught error when waitConnected()');
+    console.log(e);
+    process.exit(1);
+}
 
 for (let cmd of commands) {
     console.log('Executing command:', cmd);
-    let res = await gate.execHaloCmd(cmd);
-    console.log('Command result:', res);
+
+    try {
+        let res = await gate.execHaloCmd(cmd);
+        console.log('Command result:', res);
+    } catch (e) {
+        console.log('caught error when execHaloCmd');
+        console.log(e);
+        process.exit(1);
+    }
 }
 
 process.exit(0);

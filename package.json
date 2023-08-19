@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@arx-research/libhalo": "^1.2.8",
+    "@arx-research/libhalo": "^1.2.17",
     "qrcode": "^1.5.3",
     "websocket": "^1.0.34"
   }
